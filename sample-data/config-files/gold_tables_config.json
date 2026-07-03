@@ -1,0 +1,32 @@
+[
+    {
+        "source_table": "CustomerFeatures",
+        "target_schema": "Dimensions",
+        "target_table": "DimCustomer"
+    },
+    {
+        "source_table": "ProductFeatures",
+        "target_schema": "Dimensions",
+        "target_table": "DimProduct"
+    },
+    {
+        "source_table": "Orders",
+        "target_schema": "Facts",
+        "target_table": "FactSales"
+    },
+    {
+        "source_table": "Reviews",
+        "target_schema": "Facts",
+        "target_table": "FactReviews"
+    },
+    {
+        "source_table": "ReviewInsights",
+        "target_schema": "Facts",
+        "target_table": "FactCustomerSentiment"
+    },
+    {
+        "source_table": "CustomerJourney",
+        "target_schema": "Facts",
+        "target_table": "FactCustomerJourney"
+    }
+]
