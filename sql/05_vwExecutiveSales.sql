@@ -1,3 +1,11 @@
+-- ==========================================================
+-- Script    : 05_vwExecutiveSales.sql
+-- Purpose   : Create Executive Sales reporting view for
+--             Power BI Executive Overview dashboard.
+-- Source    : FactSales, DimCustomer, DimProduct, DimDate
+-- Output    : Reporting.vwExecutiveSales
+-- ==========================================================
+
 CREATE OR ALTER VIEW Reporting.vwExecutiveSales
 AS
 
