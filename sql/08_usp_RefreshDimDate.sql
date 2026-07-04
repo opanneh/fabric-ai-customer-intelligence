@@ -1,3 +1,11 @@
+-- ==========================================================
+-- Script    : 08_usp_RefreshDimDate.sql
+-- Purpose   : Refresh and rebuild the Date Dimension based
+--             on available sales transaction dates.
+-- Source    : FactSales
+-- Output    : Dimensions.DimDate
+-- ==========================================================
+
 CREATE OR ALTER PROCEDURE Reporting.usp_RefreshDimDate
 AS
 BEGIN
