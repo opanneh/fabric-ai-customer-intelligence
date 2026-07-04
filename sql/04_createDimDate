@@ -1,0 +1,24 @@
+TRUNCATE TABLE Dimensions.DimDate;
+
+INSERT INTO Dimensions.DimDate
+(
+    CalendarDate,
+    DayNumber,
+    MonthNumber,
+    MonthName,
+    QuarterNumber,
+    YearNumber
+)
+SELECT
+    CalendarDate,
+    DAY(CalendarDate) AS DayNumber,
+    MONTH(CalendarDate) AS MonthNumber,
+    DATENAME(MONTH, CalendarDate) AS MonthName,
+    DATEPART(QUARTER, CalendarDate) AS QuarterNumber,
+    YEAR(CalendarDate) AS YearNumber
+FROM
+(
+    SELECT DISTINCT
+        CAST(OrderDate AS DATE) AS CalendarDate
+    FROM Facts.FactSales
+) d;
