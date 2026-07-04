@@ -1,7 +1,6 @@
 -- ==========================================================
 -- Script    : 01_CreateSchemas.sql
 -- Purpose   : Create Warehouse Schemas
--- Project   : Fabric AI Customer Intelligence
 -- ==========================================================
 
 -- Create Dimensions Schema
