@@ -1,6 +1,6 @@
 -- ==========================================================
 -- Script    : 04_createDimDate.sql
--- Purpose   : Create Gold Fact Tables
+-- Purpose   : Create DimDate table and populate with data
 -- ==========================================================
 
 TRUNCATE TABLE Dimensions.DimDate;
