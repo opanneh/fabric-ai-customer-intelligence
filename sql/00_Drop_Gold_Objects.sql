@@ -1,7 +1,6 @@
 -- ==========================================================
 -- Script    : 00_Drop_Gold_Objects.sql
 -- Purpose   : Drop all Gold Warehouse Tables
--- Project   : Fabric AI Customer Intelligence
 -- ==========================================================
 
 /*===========================================================
