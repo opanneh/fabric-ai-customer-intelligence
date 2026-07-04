@@ -1,3 +1,11 @@
+-- ==========================================================
+-- Script    : 09_usp_DataQualitySummary.sql
+-- Purpose   : Validate Gold Warehouse data by returning
+--             record counts for all dimension and fact tables.
+-- Source    : Gold Warehouse
+-- Output    : Data Quality Summary
+-- ==========================================================
+
 CREATE OR ALTER PROCEDURE Reporting.usp_DataQualitySummary
 AS
 BEGIN
