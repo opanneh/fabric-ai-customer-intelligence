@@ -1,3 +1,12 @@
+-- ==========================================================
+-- Script    : 06_vwProductPerformance.sql
+-- Purpose   : Create Product Performance reporting view
+--             containing sales, revenue and customer rating
+--             metrics by product.
+-- Source    : FactSales, FactReviews, DimProduct
+-- Output    : Reporting.vwProductPerformance
+-- ==========================================================
+
 CREATE OR ALTER VIEW Reporting.vwProductPerformance
 AS
 
