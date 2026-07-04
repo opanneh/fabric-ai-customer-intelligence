@@ -1,3 +1,13 @@
+-- ==========================================================
+-- Script    : 07_vwCustomer360.sql
+-- Purpose   : Create Customer 360 reporting view combining
+--             customer, sales, reviews and AI sentiment
+--             insights into a single analytical dataset.
+-- Source    : DimCustomer, FactSales,
+--             FactReviews, FactCustomerSentiment
+-- Output    : Reporting.vwCustomer360
+-- ==========================================================
+
 CREATE OR ALTER VIEW Reporting.vwCustomer360
 AS
 
