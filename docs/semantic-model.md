@@ -31,7 +31,7 @@ The semantic model was designed with the following objectives:
 
 The semantic model consists of three shared dimensions supporting three analytical fact tables.
 
-```
+```text
                  DimDate
                     │
                     │
@@ -41,6 +41,9 @@ DimCustomer ─── FactSales ─── DimProduct
       │         FactReviews ────────┘
       │
       └──── FactCustomerSentiment ──┘
+
+              Measures Table
+           (DAX Calculations)
 ```
 
 This architecture allows multiple analytical subject areas to reuse the same business entities while maintaining clear separation of business processes.
@@ -49,20 +52,22 @@ This architecture allows multiple analytical subject areas to reuse the same bus
 
 # Dimension Tables
 
-Dimensions provide descriptive business context for analytical reporting.
+Dimension tables provide descriptive business context for analytical reporting.
+
+---
 
 ## DimCustomer
 
-Stores customer master information used across all analytical domains.
+Stores customer master information shared across the analytical platform.
 
-Business Purpose
+**Business Purpose**
 
 - Customer segmentation
 - Geographic analysis
 - Customer reporting
 - Customer intelligence
 
-Shared By
+**Shared By**
 
 - FactSales
 - FactReviews
@@ -74,14 +79,14 @@ Shared By
 
 Stores product master information.
 
-Business Purpose
+**Business Purpose**
 
 - Product analytics
 - Category reporting
 - Product performance
 - AI review analysis
 
-Shared By
+**Shared By**
 
 - FactSales
 - FactReviews
@@ -92,7 +97,7 @@ Shared By
 
 Enterprise calendar dimension supporting time intelligence.
 
-Business Purpose
+**Business Purpose**
 
 - Daily reporting
 - Monthly trends
@@ -100,7 +105,7 @@ Business Purpose
 - Year-over-year analysis
 - DAX time intelligence
 
-Shared By
+**Shared By**
 
 - FactSales
 - FactReviews
@@ -112,21 +117,23 @@ Shared By
 
 Fact tables capture measurable business events.
 
+---
+
 ## FactSales
 
-Stores customer purchase transactions.
+Stores transactional sales information.
 
-Grain
+**Grain**
 
 > One row per sales transaction.
 
-Business Metrics
+**Business Metrics**
 
 - Revenue
-- Quantity
+- Quantity Sold
 - Orders
 
-Used By
+**Consumed By**
 
 - Executive Overview Dashboard
 
@@ -136,16 +143,16 @@ Used By
 
 Stores customer review activity.
 
-Grain
+**Grain**
 
 > One row per customer review.
 
-Business Metrics
+**Business Metrics**
 
 - Ratings
 - Review Count
 
-Used By
+**Consumed By**
 
 - Customer Feedback Dashboard
 
@@ -155,18 +162,18 @@ Used By
 
 Stores AI-generated customer intelligence derived from customer reviews.
 
-Grain
+**Grain**
 
 > One row per AI-enriched review.
 
-Business Metrics
+**Business Metrics**
 
 - Sentiment
 - Category
 - Priority
 - Recommended Action
 
-Used By
+**Consumed By**
 
 - AI Customer Insights Dashboard
 
@@ -176,7 +183,7 @@ Used By
 
 The semantic model uses one-to-many relationships between dimensions and facts.
 
-```
+```text
 DimCustomer
     │
     ├──────── FactSales
@@ -200,33 +207,88 @@ DimDate
     └──────── FactCustomerSentiment
 ```
 
-This design enables consistent filtering and drill-down across multiple reporting domains.
+This relationship design enables consistent filtering, drill-down and cross-report analytics.
 
 ---
 
-# Measures
+# Measures Strategy
 
-Business calculations are centralized within a dedicated **Measures Table**.
+Business calculations are centralized within a dedicated **Measures Table**, following Microsoft Power BI modelling best practices.
 
 Separating measures from physical tables provides several advantages:
 
-- Improved model organization
+- Centralized business logic
 - Simplified report development
+- Improved model organization
 - Easier maintenance
-- Consistent KPI definitions
-- Reusable calculations
+- Reusable KPI definitions
+- Consistent calculations across reports
 
-Examples include:
+This approach keeps fact and dimension tables focused exclusively on business data while analytical calculations remain isolated within the semantic layer.
+
+---
+
+## Measure Organization
+
+Measures are grouped into logical business categories.
+
+### Revenue Measures
 
 - Total Revenue
 - Total Orders
+- Average Order Value
+- Revenue Growth
+
+---
+
+### Customer Measures
+
 - Total Customers
-- Total Products
-- Total Reviews
+- Customer Review Count
 - Average Rating
+
+---
+
+### Product Measures
+
+- Total Products
+- Product Revenue
+- Product Review Count
+
+---
+
+### AI Measures
+
 - Positive Reviews
+- Neutral Reviews
 - Negative Reviews
 - High Priority Reviews
+- AI Categories
+
+---
+
+### Time Intelligence
+
+- Revenue YTD
+- Revenue MTD
+- Previous Month Revenue
+- Previous Year Revenue
+
+---
+
+## Measure Design Principles
+
+Measures were intentionally implemented within a dedicated semantic layer rather than directly inside report visuals.
+
+This design provides:
+
+- Reusable calculations
+- Consistent KPI definitions
+- Simplified report development
+- Centralized business logic
+- Easier long-term maintenance
+
+All Power BI reports consume the same governed DAX calculations, ensuring analytical consistency across the platform.
 
 ---
 
@@ -240,7 +302,7 @@ The model combines:
 - Customer Feedback Analytics
 - AI Customer Intelligence
 
-Each business process has its own fact table while sharing common business dimensions.
+Each subject area maintains its own fact table while sharing common business dimensions.
 
 This approach provides:
 
@@ -270,9 +332,9 @@ Captures customer feedback.
 
 ### FactCustomerSentiment
 
-Captures AI-generated analytical outcomes.
+Captures AI-generated analytical outcomes rather than transactional events.
 
-Separating these facts ensures each subject area evolves independently while remaining connected through shared dimensions.
+Separating these facts allows each analytical domain to evolve independently while remaining connected through shared dimensions.
 
 ---
 
@@ -287,7 +349,7 @@ The Power BI Semantic Model sits above the Gold Warehouse and provides:
 - Interactive filtering
 - Cross-report consistency
 
-All Power BI reports consume the same governed semantic model.
+All dashboards consume the same governed semantic model.
 
 ---
 
@@ -321,9 +383,9 @@ The semantic model can be extended with:
 
 # Design Summary
 
-The semantic model was intentionally designed as a **Galaxy Schema** to support multiple analytical domains while maintaining shared business dimensions and consistent enterprise reporting.
+The semantic model was intentionally designed as a **Galaxy (Fact Constellation) Schema** to support multiple analytical domains while maintaining shared business dimensions and consistent enterprise reporting.
 
-This modelling approach aligns with modern Microsoft Fabric best practices by combining dimensional modelling, semantic modelling and AI-generated business intelligence into a unified analytical platform.
+This modelling approach aligns with Microsoft Fabric best practices by combining dimensional modelling, semantic modelling and AI-generated business intelligence into a unified analytical platform.
 
 ---
 
