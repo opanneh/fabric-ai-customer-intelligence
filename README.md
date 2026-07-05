@@ -1,317 +1,159 @@
 # 🚀 Fabric AI Customer Intelligence Platform
 
-An end-to-end **Microsoft Fabric** solution implementing a modern **Medallion Architecture** to ingest, transform, enrich, and analyze customer data. The platform combines **Data Engineering**, **Business Intelligence**, and **Generative AI** to provide actionable customer insights through Microsoft Fabric, Azure AI Foundry, and Power BI.
+> **An enterprise-grade end-to-end Microsoft Fabric analytics solution** implementing Medallion Architecture, AI-powered customer intelligence, dimensional data warehousing, and interactive Power BI reporting.
+
+The **Fabric AI Customer Intelligence Platform** demonstrates how modern organizations can build a scalable customer analytics platform using **Microsoft Fabric**, integrating **Data Engineering**, **Artificial Intelligence**, **Data Warehousing**, **Business Intelligence**, and **DevOps** into a unified enterprise solution.
+
+The solution follows Microsoft's recommended **Medallion Architecture**, leveraging **Fabric Data Factory**, **OneLake**, **PySpark**, **Azure AI Foundry (GPT-5)**, **Fabric Warehouse**, **Power BI Semantic Models**, and **Deployment Pipelines** to transform raw operational data into trusted business insights.
 
 ---
 
-## 📌 Project Overview
+## ⭐ Enterprise Solution Highlights
 
-Organizations collect customer information from multiple channels such as:
-
-- Customer transactions
-- Product catalog
-- Customer reviews
-- Social media
-- Website activity
-
-This project demonstrates how Microsoft Fabric can unify these data sources into a **Customer 360 Analytics Platform**, enriched with **GPT-5 AI insights** and presented through interactive Power BI dashboards.
+- Enterprise Medallion Architecture (Bronze → Silver → Gold)
+- Microsoft Fabric Data Factory orchestration
+- OneLake centralized data platform
+- PySpark data engineering & feature engineering
+- AI-powered customer review enrichment using GPT-5
+- Enterprise Galaxy Schema data warehouse
+- Power BI Semantic Model
+- Executive and operational dashboards
+- Multi-environment deployment (Development → Test → Production)
+- Azure DevOps & GitHub integration
+- Modular and production-ready repository structure
 
 ---
 
-## 🏗 Solution Architecture
+# 📌 Project Overview
+
+Organizations generate customer information across multiple operational systems including sales transactions, product catalogs, customer reviews and digital interactions.
+
+The **Fabric AI Customer Intelligence Platform** consolidates these data sources into a governed analytics platform where AI-generated insights are integrated directly into the engineering pipeline before being delivered through interactive Power BI dashboards.
+
+The solution demonstrates enterprise architecture principles including:
+
+- Layered Medallion Architecture
+- Modular data pipelines
+- AI-enhanced analytics
+- Enterprise data warehousing
+- Semantic modelling
+- Multi-environment deployment
+
+---
+
+# 🏗 Solution Architecture
+
+> *(Insert your End-to-End Architecture image here)*
+
+```markdown
+![End-to-End Architecture](docs/images/end-to-end-architecture.png)
+```
+
+For a detailed explanation of the solution architecture, see:
+
+📖 **docs/architecture.md**
+
+---
+
+# 🛠 Enterprise Technology Stack
+
+| Layer | Technology |
+|---------|------------|
+| Data Integration | Microsoft Fabric Data Factory |
+| Storage | OneLake |
+| Bronze Layer | Fabric Lakehouse |
+| Silver Layer | Fabric Lakehouse |
+| Data Processing | PySpark |
+| AI Enrichment | Azure AI Foundry (GPT-5) |
+| Gold Layer | Fabric Warehouse |
+| Data Warehouse | Galaxy Schema |
+| Semantic Layer | Power BI Semantic Model |
+| Reporting | Power BI |
+| DevOps | GitHub & Azure DevOps |
+| Deployment | Microsoft Fabric Deployment Pipelines |
+
+---
+
+# ✨ Solution Features
+
+- End-to-end Medallion Architecture
+- Enterprise ETL orchestration
+- AI-powered customer review enrichment
+- Feature engineering with PySpark
+- Enterprise dimensional modelling
+- Galaxy Schema semantic model
+- Interactive Power BI dashboards
+- Environment promotion using Deployment Pipelines
+- Production-ready repository organization
+
+---
+
+# 📊 Dashboard Gallery
+
+### 📈 Executive Overview
+
+> *(Insert Screenshot)*
+
+---
+
+### 👥 Customer Feedback
+
+> *(Insert Screenshot)*
+
+---
+
+### 🤖 AI Customer Insights
+
+> *(Insert Screenshot)*
+
+---
+
+# 📂 Repository Structure
 
 ```text
-                   GitHub / External Sources
-                              │
-                              ▼
-                     Fabric Data Pipeline
-                              │
-                              ▼
-                     OneLake - Raw Layer
-                              │
-                              ▼
-                     OneLake - Bronze Layer
-                              │
-                              ▼
-                  PySpark Data Transformation
-                              │
-                              ▼
-                     OneLake - Silver Layer
-                              │
-                              ▼
-                  Feature Engineering Notebook
-                              │
-                              ▼
-                Azure AI Foundry (GPT-5)
-                              │
-                              ▼
-                     AI Enrichment Layer
-                              │
-                              ▼
-                      OneLake - Gold Layer
-                              │
-                              ▼
-                    Power BI Semantic Model
-                              │
-                              ▼
-                   Executive Dashboards
-```
-
----
-
-# 🛠 Technology Stack
-
-| Technology | Purpose |
-|------------|---------|
-| Microsoft Fabric | End-to-end analytics platform |
-| Fabric Data Factory | Data ingestion & orchestration |
-| OneLake | Centralized storage |
-| Lakehouse | Medallion architecture |
-| PySpark | Data transformation |
-| Delta Lake | Reliable data storage |
-| Azure AI Foundry | GPT-5 AI enrichment |
-| Power BI | Reporting & visualization |
-| GitHub | Version control |
-
----
-
-# 📂 Project Structure
-
-```
-fabric-ai-customer-intelligence
+fabric-ai-customer-intelligence/
 │
-├── data
-│   ├── raw
-│   ├── bronze
-│   ├── silver
-│   └── gold
-│
-├── notebooks
-│   ├── 01_Bronze_to_Silver
-│   ├── 02_Feature_Engineering
-│   ├── 03_AI_Review_Enrichment
-│   ├── 04_Gold_Data_Model
-│   └── 05_PowerBI_Dataset
-│
-├── pipelines
-│   └── PL_01_Ingest_Customer_Data
-│
-├── dashboards
-│   └── Customer_Intelligence.pbix
-│
-├── docs
-│   ├── architecture.png
-│   ├── dataflow.png
-│   └── erd.png
-│
+├── architecture/
+├── config/
+├── docs/
+├── notebooks/
+├── pipelines/
+├── powerbi/
+├── sample-data/
+├── screenshots/
+├── sql/
 └── README.md
 ```
 
 ---
 
-# 📊 Data Sources
+# 📚 Documentation
 
-| Dataset | Format |
-|----------|--------|
-| Customers | CSV |
-| Products | CSV |
-| Orders | CSV |
-| Customer Reviews | JSON |
-| Social Media | JSON |
-| Website Activity | JSON |
+Detailed technical documentation is available in the **docs** folder.
 
----
-
-# 🥉 Bronze Layer
-
-The Bronze layer stores the first managed copy of the source data.
-
-Operations:
-
-- Schema enforcement
-- Metadata enrichment
-- Delta conversion
-- Ingestion logging
-
-No business transformations are applied.
+| Document | Description |
+|-----------|-------------|
+| architecture.md | End-to-End Solution Architecture |
+| semantic-model.md | Galaxy Schema & Semantic Model |
+| ai-enrichment.md | GPT-5 Enrichment Workflow |
+| deployment.md | Deployment Strategy |
+| cicd.md | CI/CD & DevOps Approach |
 
 ---
 
-# 🥈 Silver Layer
-
-The Silver layer prepares data for analytics.
-
-Processing includes:
-
-- Data cleansing
-- Duplicate removal
-- Null handling
-- Data validation
-- Standardization
-- Business rule validation
-
----
-
-# 🤖 AI Enrichment
-
-Customer reviews are enriched using **Azure AI Foundry GPT-5**.
-
-Each review is analyzed to generate:
-
-- Sentiment
-- Category
-- Priority
-- Summary
-- Keywords
-- Customer Emotion
-- Recommended Department
-- Suggested Resolution
-
-Example:
-
-```json
-{
-  "sentiment": "Negative",
-  "category": "Delivery",
-  "priority": "High",
-  "summary": "Customer experienced delayed delivery and damaged packaging.",
-  "keywords": [
-    "delivery",
-    "shipping",
-    "damage"
-  ]
-}
-```
-
----
-
-# 🥇 Gold Layer
-
-The Gold layer contains curated business-ready datasets.
-
-### Customer360
-
-- Customer Lifetime Value
-- Total Orders
-- Revenue
-- Satisfaction
-- Sentiment
-
-### Product360
-
-- Units Sold
-- Revenue
-- Rating
-- Stock
-- AI Insights
-
-### Executive KPIs
-
-- Revenue
-- Orders
-- Average Rating
-- Customer Satisfaction
-- Top Products
-- Top Categories
-
----
-
-# 📈 Power BI Dashboards
-
-The project includes several business dashboards:
-
-### Executive Overview
-
-- Revenue
-- Orders
-- Growth
-- Customer Satisfaction
-
-### Customer 360
-
-- Customer Segments
-- Lifetime Value
-- Purchase Behaviour
-
-### Product Performance
-
-- Best Selling Products
-- Inventory
-- Ratings
-
-### AI Customer Insights
-
-- Sentiment Analysis
-- Complaint Categories
-- Customer Emotions
-- Recommended Actions
-
-### Customer Journey
-
-- Website Activity
-- Purchase Flow
-- Customer Feedback
-
----
-
-# 🔄 Data Flow
-
-```text
-GitHub
-   │
-   ▼
-Fabric Data Factory
-   │
-   ▼
-Raw
-   │
-   ▼
-Bronze
-   │
-   ▼
-Silver
-   │
-   ▼
-Feature Engineering
-   │
-   ▼
-Azure AI Foundry GPT-5
-   │
-   ▼
-Gold
-   │
-   ▼
-Power BI
-```
-
----
-
-# 🎯 Business Value
-
-The platform enables organizations to:
-
-- Build a Customer 360 view
-- Understand customer sentiment
-- Identify customer pain points
-- Improve customer support
-- Optimize product quality
-- Support data-driven decision making
-
----
-
-# 🚀 Future Improvements
+# 🚀 Future Enhancements
 
 - Incremental data ingestion
-- Streaming customer events
-- AI-powered customer segmentation
+- Event streaming
 - Customer churn prediction
 - Product recommendation engine
 - RAG-powered customer support assistant
-- CI/CD with GitHub Actions and Microsoft Fabric deployment pipelines
+- Enterprise Git Integration
+- Automated CI/CD pipelines
 
 ---
 
-# 📌 Skills Demonstrated
+# 💼 Skills Demonstrated
 
 - Microsoft Fabric
 - Fabric Data Factory
@@ -322,32 +164,19 @@ The platform enables organizations to:
 - Azure AI Foundry
 - GPT-5 Integration
 - Prompt Engineering
+- SQL
+- Data Warehousing
+- Galaxy Schema
+- Semantic Modelling
 - Power BI
-- Data Modeling
-- Feature Engineering
-- Git & GitHub
+- Deployment Pipelines
+- Azure DevOps
+- GitHub
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Ousainou Panneh**
 
-Data Engineer | BI Developer | AI & Data Science Enthusiast
-
-```
-
----
-
-### One recommendation
-
-To make this repository stand out even more, add these images to the `docs/` folder and reference them in the README:
-
-1. **Architecture Diagram** (overall platform)
-2. **Medallion Architecture Diagram**
-3. **Fabric Data Factory Pipeline Screenshot**
-4. **Lakehouse Structure**
-5. **Power BI Dashboard Screenshots**
-6. **GPT-5 AI Enrichment Flow**
-
-Those visuals make the repository much more engaging and help recruiters quickly understand the end-to-end solution.
+**Data Engineer | BI Developer | Microsoft Fabric | AI & Data Science**
