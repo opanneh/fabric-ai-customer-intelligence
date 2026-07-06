@@ -2,158 +2,123 @@
 
 ## Overview
 
-The **Fabric AI Customer Intelligence Platform** integrates **Generative AI** directly into the Microsoft Fabric Medallion Architecture to enrich customer reviews with business-ready insights before they are loaded into the analytical warehouse.
+The **Fabric AI Customer Intelligence Platform** integrates **Generative AI** directly into the Microsoft Fabric **Medallion Architecture**, enriching customer reviews with structured business intelligence before they are loaded into the enterprise analytical warehouse.
 
-Unlike traditional reporting solutions where AI is executed inside dashboards or applications, this platform performs AI enrichment as part of the **Silver Layer** transformation process.
-
-This approach transforms unstructured customer feedback into trusted analytical data that can be reused across multiple business reports, dashboards and downstream applications.
+Unlike traditional reporting solutions where AI executes inside dashboards or applications, this platform performs AI enrichment during the **Silver Layer** transformation process. This design converts unstructured customer feedback into trusted analytical data that can be reused consistently across dashboards, reports and future analytical solutions.
 
 ---
 
-# Design Objectives
+# 🎯 Design Objectives
 
 The AI enrichment process was designed to:
 
 - Transform unstructured customer reviews into structured business attributes
-- Create reusable AI-generated datasets
+- Generate reusable AI-enhanced datasets
 - Improve customer intelligence reporting
-- Eliminate repeated AI processing across reports
-- Integrate AI directly into the enterprise data engineering pipeline
+- Eliminate repeated AI processing
+- Integrate AI into the enterprise data engineering pipeline
 - Support scalable analytical workloads
 
 ---
 
-# AI Architecture
+# 🤖 AI Enrichment Workflow
 
-![AI Enrichment Architecture](images/ai-enrichment-flow.png)
-
-The AI enrichment workflow is integrated into the Silver layer.
+Customer reviews are enriched immediately after Silver-layer processing. Once data has been cleansed and standardized, Azure AI Foundry (GPT-5) generates structured business attributes that are persisted back into the Lakehouse before loading into the Gold Warehouse.
 
 ```text
-Raw Reviews
-      │
-      ▼
+Customer Reviews
+        │
+        ▼
 Bronze Lakehouse
-      │
-      ▼
+        │
+        ▼
 Silver Transformation
-      │
-      ▼
-Business Feature Engineering
-      │
-      ▼
+        │
+        ▼
+Feature Engineering
+        │
+        ▼
 Azure AI Foundry (GPT-5)
-      │
-      ▼
-AI Enriched Reviews
-      │
-      ▼
-Silver Lakehouse (Enriched)
-      │
-      ▼
-Data Factory Pipeline
-      │
-      ▼
-Gold Warehouse
-      │
-      ▼
-Power BI
+        │
+        ▼
+AI-Enriched Reviews
+        │
+        ▼
+Silver Lakehouse
+        │
+        ▼
+Fabric Data Factory
+        │
+        ▼
+Fabric Warehouse
+        │
+        ▼
+Power BI Semantic Model
 ```
 
-This architecture ensures AI-generated attributes become part of the governed enterprise dataset before analytical modelling.
+| Stage | Purpose | Technology |
+|--------|---------|------------|
+| Bronze | Preserve raw customer reviews | OneLake Lakehouse |
+| Silver | Cleanse and validate customer reviews | PySpark |
+| Feature Engineering | Prepare text for AI inference | PySpark |
+| AI Enrichment | Generate structured business attributes | Azure AI Foundry (GPT-5) |
+| Gold | Store AI-enriched analytical data | Fabric Warehouse |
+| Reporting | Deliver governed business insights | Power BI |
+
+This workflow ensures AI-generated attributes become part of the governed enterprise dataset before analytical modelling.
 
 ---
 
-# Why AI in the Silver Layer?
+# ⭐ Why AI in the Silver Layer?
 
-The AI enrichment process was intentionally positioned between the Silver and Gold layers.
+Positioning AI enrichment between the Silver and Gold layers provides several enterprise benefits.
 
-Rather than executing AI during reporting, enrichment is performed once after data cleansing and feature engineering have been completed.
-
-This provides several advantages.
-
-## Trusted Input Data
-
-Customer reviews are standardized and validated before being submitted to the AI model.
-
-This improves response quality and reduces inconsistencies.
+| Benefit | Business Value |
+|----------|----------------|
+| Trusted Input | AI processes validated and standardized customer reviews |
+| Reusable Intelligence | AI-generated attributes are reused across multiple reports |
+| Improved Performance | Reports consume precomputed AI attributes rather than invoking AI at runtime |
+| Consistent Business Logic | All reports use the same governed AI-generated insights |
 
 ---
 
-## Reusable Intelligence
+# 🛠 Business Feature Engineering
 
-AI-generated attributes become part of the enterprise dataset and can be reused across:
-
-- Executive dashboards
-- Customer analytics
-- Operational reporting
-- Future machine learning models
-- External applications
-
----
-
-## Improved Performance
-
-Reports consume pre-computed AI attributes rather than executing AI requests at runtime.
-
-Benefits include:
-
-- Faster report performance
-- Reduced API costs
-- Lower latency
-- Improved scalability
-
----
-
-## Consistent Business Logic
-
-AI processing occurs once during data engineering.
-
-Every report consumes identical AI outputs, ensuring consistent business definitions across the organization.
-
----
-
-# Business Feature Engineering
-
-Before AI processing, customer reviews undergo feature engineering.
-
-Typical transformations include:
+Before AI processing, customer reviews undergo several preparation steps:
 
 - Text standardization
-- Whitespace removal
 - Null handling
-- Duplicate detection
+- Duplicate removal
 - Data validation
 - Business rule validation
+- Feature engineering
 
-Preparing the data before AI enrichment improves response quality and consistency.
+Preparing high-quality input data improves the consistency and reliability of AI-generated outputs.
 
 ---
 
-# Prompt Engineering
+# 💬 Prompt Engineering
 
-Azure AI Foundry (GPT-5) is instructed to analyze each customer review and return structured business information.
+Azure AI Foundry (GPT-5) is instructed to generate structured business information rather than free-text responses.
 
-Rather than generating free-text responses, the model produces predictable structured attributes suitable for analytical processing.
+The prompt is designed to produce:
 
-The prompt was designed to encourage:
-
-- Deterministic output
-- Structured formatting
+- Deterministic outputs
+- Structured JSON responses
 - Business-oriented categorization
 - Consistent sentiment classification
 
 ---
 
-# AI Output
+# 📄 AI Output
 
 Each customer review is enriched with additional business attributes.
 
 Generated fields include:
 
 - Sentiment
-- Review Category
-- Business Priority
+- Category
+- Priority
 - Summary
 - Keywords
 - Recommended Action
@@ -171,43 +136,39 @@ Example output:
     "damage",
     "shipping"
   ],
-  "recommended_action": "Escalate to logistics team."
+  "recommended_action": "Escalate to Logistics Team."
 }
 ```
 
 ---
 
-# Gold Layer Integration
+# 🥇 Gold Layer Integration
 
-Once AI enrichment has completed successfully, the enriched Silver dataset is promoted into the Gold Warehouse through Microsoft Fabric Data Factory.
+After enrichment, the AI-generated attributes are promoted to the **Fabric Warehouse**, where they populate the **FactCustomerSentiment** table within the enterprise **Galaxy Schema**.
 
-The enriched attributes populate the **FactCustomerSentiment** table within the enterprise Galaxy Schema.
-
-This enables AI-generated insights to become first-class analytical entities within the semantic model.
+This allows AI-generated insights to become governed analytical assets that are consumed consistently across the semantic model.
 
 ---
 
-# Reporting Integration
+# 📊 Business Intelligence Consumption
 
 The enriched data powers the **AI Customer Insights** dashboard.
 
-Business users can analyze:
+Business users can analyse:
 
-- Customer sentiment distribution
-- Review categories
-- High-priority issues
-- Recommended business actions
+- Customer sentiment
+- Complaint categories
+- Business priorities
+- Recommended actions
 - AI-generated summaries
 
-Because AI attributes are stored within the warehouse, reports remain responsive while maintaining consistent analytical results.
+Because AI attributes are stored within the warehouse, dashboards remain responsive while delivering consistent analytical results.
 
 ---
 
-# Business Value
+# 💼 Business Value
 
-Integrating AI directly into the engineering pipeline provides measurable business benefits.
-
-The platform enables organizations to:
+Integrating AI into the engineering pipeline enables organisations to:
 
 - Detect customer dissatisfaction earlier
 - Prioritize operational issues
@@ -216,39 +177,11 @@ The platform enables organizations to:
 - Support executive decision-making
 - Build reusable AI-enhanced datasets
 
-The architecture also allows future analytical models to consume AI-generated attributes without additional processing.
+This architecture also enables future machine learning models and enterprise applications to consume AI-generated attributes without additional processing.
 
 ---
 
-# Design Decisions
-
-Several architectural decisions influenced the AI implementation.
-
-### AI executes after Silver transformations
-
-Ensures trusted, standardized input data.
-
----
-
-### AI executes before Gold loading
-
-Allows AI-generated attributes to become part of the governed analytical model.
-
----
-
-### AI output stored in warehouse
-
-Provides reusable business intelligence across multiple reports.
-
----
-
-### AI processing is centralized
-
-Prevents duplicate processing within Power BI reports or downstream applications.
-
----
-
-# Future Enhancements
+# 🚀 Future Enhancements
 
 The AI enrichment layer can be extended with:
 
@@ -259,23 +192,21 @@ The AI enrichment layer can be extended with:
 - Customer churn prediction
 - Automatic ticket routing
 - RAG-powered customer support assistant
-- Batch and streaming AI enrichment
+- Streaming AI enrichment
 
 ---
 
-# Design Summary
+# 📌 Design Summary
 
-The AI enrichment layer transforms customer feedback from unstructured text into governed business intelligence.
+The AI enrichment layer transforms customer feedback from unstructured text into governed enterprise intelligence.
 
-By integrating GPT-5 directly into the Microsoft Fabric Medallion Architecture, the platform extends traditional data engineering with enterprise AI capabilities while maintaining scalability, consistency and analytical performance.
-
-This architecture demonstrates how Generative AI can become an integral component of a modern enterprise analytics platform rather than an isolated reporting feature.
+By integrating Azure AI Foundry (GPT-5) directly into the Microsoft Fabric Medallion Architecture, the platform demonstrates how Generative AI can become a reusable enterprise data asset rather than an isolated reporting feature.
 
 ---
 
-# Related Documentation
+# 📚 Related Documentation
 
-- architecture.md
-- semantic-model.md
-- deployment.md
-- cicd.md
+- 📖 [Solution Architecture](architecture.md)
+- 🌌 [Semantic Model](semantic-model.md)
+- 🚀 [Deployment Strategy](deployment.md)
+- ⚙️ [CI/CD & DevOps](cicd.md)
