@@ -43,9 +43,9 @@ The solution demonstrates enterprise architecture principles including:
 
 # 🏗 Solution Architecture
 
-```markdown
-![End-to-End Architecture](architecture/end-to-end-architecture.png)
-```
+<p align="center">
+  <img src="architecture/end-to-end-architecture.png" width="100%">
+</p>
 
 For a detailed explanation of the solution architecture, see:
 
