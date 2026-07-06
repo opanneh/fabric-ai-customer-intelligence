@@ -30,7 +30,9 @@ These principles enable the platform to scale while remaining maintainable and e
 
 # End-to-End Architecture
 
-![End-to-End Architecture](images/end-to-end-architecture.png)
+<p align="center">
+  <img src="architecture/galaxy_schema.png" width="95%">
+</p>
 
 The solution follows a sequential processing pipeline:
 
