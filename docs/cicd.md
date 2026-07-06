@@ -1,247 +1,217 @@
-# 🚀 Deployment Strategy
+# 🔄 CI/CD & DevOps Strategy
 
 ## Overview
 
-The **Fabric AI Customer Intelligence Platform** adopts a multi-environment deployment strategy using **Microsoft Fabric Deployment Pipelines** to promote analytical assets through Development, Test and Production environments.
+The **Fabric AI Customer Intelligence Platform** follows modern DevOps practices to support collaborative development, source control and controlled software delivery.
 
-This approach enables controlled releases, environment isolation and validation before changes reach production.
+The implementation combines **GitHub**, **Azure DevOps** and **Microsoft Fabric Deployment Pipelines** to manage source code, documentation and environment promotion throughout the project lifecycle.
 
-The deployment strategy aligns with enterprise data platform best practices by separating development activities from production reporting workloads.
-
----
-
-# Deployment Architecture
-
-![Deployment Pipeline](images/deployment-pipeline.png)
-
-```text
-            Development
-                  │
-                  ▼
-        Deployment Pipeline
-                  │
-                  ▼
-               Test (UAT)
-                  │
-                  ▼
-        Deployment Pipeline
-                  │
-                  ▼
-             Production
-```
-
-Microsoft Fabric Deployment Pipelines provide controlled promotion of analytical artifacts while maintaining environment consistency.
+Although the project was developed using a **Microsoft Fabric Trial** environment, the solution architecture has been designed to support enterprise CI/CD practices as the platform evolves.
 
 ---
 
-# Environment Strategy
+# 🎯 DevOps Objectives
 
-The solution is deployed across three isolated environments.
+The DevOps strategy was designed to:
 
-## Development
-
-Purpose
-
-- Active development
-- Notebook development
-- SQL development
-- Pipeline development
-- Initial testing
-
-Typical Activities
-
-- Feature development
-- Bug fixes
-- AI prompt improvements
-- Dashboard design
+- Maintain version-controlled analytical assets
+- Support collaborative development
+- Improve solution quality
+- Enable controlled releases
+- Reduce deployment risk
+- Maintain traceability
+- Prepare the platform for future CI/CD automation
 
 ---
 
-## Test (UAT)
-
-Purpose
-
-Validate changes before production deployment.
-
-Typical Activities
-
-- Functional testing
-- Data validation
-- Performance verification
-- Business acceptance testing
-- Dashboard validation
-
-Only validated artifacts are promoted to Production.
-
----
-
-## Production
-
-Purpose
-
-Provide stable business reporting.
-
-Production contains:
-
-- Approved pipelines
-- Approved notebooks
-- Gold Warehouse
-- Semantic Model
-- Power BI reports
-
-No direct development occurs within this environment.
-
----
-
-# Deployment Pipeline
-
-The deployment pipeline promotes Microsoft Fabric artifacts between environments.
-
-Artifacts include:
-
-- Data Factory Pipelines
-- Lakehouses
-- Notebooks
-- Warehouses
-- Semantic Models
-- Power BI Reports
-
-This ensures all components remain synchronized throughout the deployment lifecycle.
-
----
-
-# Deployment Workflow
+# 🔄 Development Lifecycle
 
 ```text
 Developer
       │
       ▼
-Development Workspace
+Feature Branch
       │
       ▼
-Validation
+Pull Request
       │
       ▼
-Deploy to Test
+Code Review
       │
       ▼
-Business Validation
+Develop Branch
       │
       ▼
-Deploy to Production
+Technical Validation
+      │
+      ▼
+Main Branch
+      │
+      ▼
+Deployment Pipeline
+      │
+      ▼
+Development
+      │
+      ▼
+Test
+      │
+      ▼
+Production
 ```
 
-Each deployment stage includes validation before promotion to the next environment.
+This workflow separates software development from deployment while ensuring controlled promotion of analytical assets.
 
 ---
 
-# Validation Strategy
+# 📂 Source Control Strategy
 
-Before deployment, the following validation activities are performed.
+GitHub serves as the primary source control repository for the project.
 
-## Data Validation
+Azure DevOps is used for project planning and work management.
 
-- Record counts
-- Schema validation
-- Data quality verification
-- Foreign key integrity
+Version-controlled assets include:
 
----
+- PySpark notebooks
+- SQL scripts
+- Data Factory pipelines
+- Configuration files
+- Documentation
+- Architecture diagrams
+- Sample datasets
 
-## AI Validation
+Version control provides:
 
-- Prompt validation
-- JSON structure verification
-- Sentiment consistency
-- Category verification
-
----
-
-## Warehouse Validation
-
-- Fact table completeness
-- Dimension integrity
-- Stored procedure execution
-- Reporting view validation
+- Change history
+- Collaboration
+- Backup
+- Traceability
+- Documentation
 
 ---
 
-## Power BI Validation
+# 🌿 Branching Strategy
 
-- Semantic model refresh
-- DAX calculations
-- Dashboard rendering
-- KPI validation
+The project follows a Git Flow-inspired branching model.
+
+```text
+main
+│
+├── develop
+│
+├── feature/data-ingestion
+├── feature/ai-enrichment
+├── feature/semantic-model
+└── hotfix/*
+```
+
+| Branch | Purpose |
+|---------|---------|
+| **main** | Production-ready solution |
+| **develop** | Integration branch |
+| **feature/** | New functionality |
+| **hotfix/** | Production fixes |
 
 ---
 
-# Deployment Benefits
+# 👥 Code Review
 
-Using Deployment Pipelines provides several enterprise advantages.
+Before merging, changes should undergo peer review.
 
-- Controlled releases
+Typical review activities include:
+
+- SQL validation
+- Notebook review
+- Pipeline validation
+- Documentation review
+- Performance optimisation
+- Naming consistency
+
+---
+
+# ⚙️ Continuous Integration
+
+The architecture is designed to support automated CI.
+
+Future automation may include:
+
+- Repository validation
+- Notebook testing
+- SQL validation
+- Configuration verification
+- Documentation validation
+- Build artifact generation
+
+Automation can be implemented using **GitHub Actions** or **Azure DevOps Pipelines**.
+
+---
+
+# 🚀 Current Implementation
+
+The project currently implements:
+
+| Platform | Purpose |
+|----------|---------|
+| **GitHub** | Source control |
+| **Azure DevOps** | Project management |
+| **Microsoft Fabric Deployment Pipelines** | Environment promotion |
+
+> **Implementation Note**
+>
+> Native **Microsoft Fabric Git Integration** could not be fully configured because the project was developed within a **Microsoft Fabric Trial** environment where tenant configuration and licensing restrictions limited its availability.
+>
+> The project therefore uses GitHub for version control and Microsoft Fabric Deployment Pipelines for controlled deployment between environments.
+
+---
+
+# 🔐 Security & Governance
+
+The DevOps strategy promotes:
+
+- Version history
+- Controlled source access
 - Environment isolation
-- Reduced production risk
+- Change traceability
 - Repeatable deployments
-- Improved governance
-- Faster releases
-- Simplified rollback
 
----
+Future enhancements may include:
 
-# Rollback Strategy
-
-If issues are detected after deployment:
-
-- Stop report refreshes
-- Revert to the previous deployment
-- Validate warehouse integrity
-- Verify semantic model
-- Resume scheduled refreshes
-
-This minimizes business disruption while maintaining data consistency.
-
----
-
-# Enterprise Benefits
-
-The deployment strategy enables:
-
-- Collaborative development
-- Safe production releases
-- Controlled change management
-- Simplified testing
-- Environment consistency
-- Improved governance
-
-The approach aligns with Microsoft Fabric enterprise deployment recommendations.
-
----
-
-# Future Enhancements
-
-Future deployment improvements may include:
-
+- Branch protection rules
+- Mandatory pull requests
+- Secret management
+- Security scanning
 - Automated deployment approvals
-- Environment parameterization
+
+---
+
+# 🚀 Future CI/CD Roadmap
+
+The solution architecture is prepared for future enterprise automation through:
+
+- Native Microsoft Fabric Git Integration
+- GitHub Actions
+- Azure DevOps Pipelines
+- Automated notebook testing
+- Automated SQL validation
 - Infrastructure as Code
-- Automated testing
-- Azure DevOps release integration
-- Git-based deployments
+- Deployment approvals
+- Automated semantic model validation
+
+These capabilities can be introduced without modifying the overall architecture.
 
 ---
 
-# Design Summary
+# 📌 Design Summary
 
-The Fabric AI Customer Intelligence Platform was designed with deployment and operational governance as core architectural principles.
+The **Fabric AI Customer Intelligence Platform** combines **GitHub**, **Azure DevOps** and **Microsoft Fabric Deployment Pipelines** to support collaborative development, source control and controlled software delivery.
 
-By separating Development, Test and Production environments through Microsoft Fabric Deployment Pipelines, the solution supports enterprise-grade release management while ensuring stable and reliable analytical reporting.
+While the current implementation demonstrates structured version control and deployment governance, the architecture provides a clear path toward fully automated enterprise CI/CD as Microsoft Fabric capabilities mature.
 
 ---
 
-# Related Documentation
+# 📚 Related Documentation
 
-- architecture.md
-- semantic-model.md
-- ai-enrichment.md
-- cicd.md
+- 📖 [Solution Architecture](architecture.md)
+- 🌌 [Semantic Model](semantic-model.md)
+- 🤖 [AI Enrichment](ai-enrichment.md)
+- 🚀 [Deployment Strategy](deployment.md)
