@@ -2,186 +2,159 @@
 
 ## Overview
 
-The **Fabric AI Customer Intelligence Platform** follows a structured deployment approach using **Microsoft Fabric Deployment Pipelines** to promote analytical assets between Development, Test and Production workspaces.
+The **Fabric AI Customer Intelligence Platform** follows a structured deployment strategy using **Microsoft Fabric Deployment Pipelines** to promote analytical assets across **Development**, **Test**, and **Production** workspaces.
 
-Source code and project artifacts are maintained in GitHub and Azure DevOps repositories to provide version control, documentation and project organization throughout the development lifecycle.
+Project source code, documentation and supporting artifacts are maintained in **GitHub** and **Azure DevOps**, providing version control, collaboration and traceability throughout the development lifecycle.
 
-The deployment strategy separates development activities from production reporting, providing a controlled approach for validating changes before they are made available to business users.
+This deployment strategy separates development activities from production reporting, ensuring changes are validated before being released to business users.
 
 ---
 
-# Deployment Architecture
+# 🏗️ Deployment Architecture
 
-![Deployment Pipeline](images/deployment-pipeline.png)
+<p align="center">
+  <img src="../screenshots/deployment-pipeline.png" width="100%">
+</p>
+
+<p align="center">
+<i>Deployment of Microsoft Fabric assets across Development, Test and Production environments.</i>
+</p>
 
 ```text
 Development Workspace
         │
         ▼
-Microsoft Fabric
 Deployment Pipeline
         │
         ▼
 Test Workspace
         │
         ▼
-Microsoft Fabric
 Deployment Pipeline
         │
         ▼
 Production Workspace
 ```
 
-Deployment Pipelines are used to promote Microsoft Fabric artifacts while maintaining environment isolation.
+Deployment Pipelines provide controlled promotion of Microsoft Fabric artifacts while maintaining environment isolation.
 
 ---
 
-# Environment Strategy
+# 🌍 Environment Strategy
 
-The solution is organized into three dedicated environments.
-
-## Development
-
-The Development workspace is used to:
-
-- Build Data Factory pipelines
-- Develop PySpark notebooks
-- Create SQL warehouse objects
-- Design semantic models
-- Develop Power BI reports
-- Validate AI enrichment
+| Environment | Purpose |
+|-------------|---------|
+| **Development** | Build pipelines, notebooks, warehouse objects, semantic models and dashboards |
+| **Test** | Validate data, pipelines, AI enrichment and reports before release |
+| **Production** | Publish approved analytical assets for business users |
 
 ---
 
-## Test
-
-The Test workspace is used to verify the solution before production deployment.
-
-Validation activities include:
-
-- Data validation
-- Pipeline execution
-- Warehouse validation
-- Semantic model verification
-- Dashboard testing
-
----
-
-## Production
-
-The Production workspace contains approved analytical assets used for business reporting.
-
-Only validated artifacts are promoted into this environment.
-
----
-
-# Deployment Workflow
-
-The deployment process follows a simple promotion model.
+# 🔄 Deployment Workflow
 
 ```text
 Development
 
-↓
+        │
 
-Validate
+        ▼
 
-↓
+Technical Validation
+
+        │
+
+        ▼
 
 Deploy to Test
 
-↓
+        │
+
+        ▼
 
 Business Validation
 
-↓
+        │
+
+        ▼
 
 Deploy to Production
 ```
 
-This approach reduces deployment risk while maintaining consistent environments.
+This staged promotion process reduces deployment risk while ensuring analytical consistency across environments.
 
 ---
 
-# Deployed Fabric Artifacts
+# 📦 Fabric Artifacts
 
-The following Microsoft Fabric artifacts are promoted through the Deployment Pipeline.
+The following Microsoft Fabric assets are promoted through the Deployment Pipeline:
 
 - Data Factory Pipelines
 - Lakehouses
-- Notebooks
+- PySpark Notebooks
 - Fabric Warehouse
 - Semantic Model
 - Power BI Reports
 
-This ensures each environment contains the same analytical solution.
+Each environment maintains the same analytical solution while allowing controlled testing and validation.
 
 ---
 
-# Validation
+# ✅ Validation Checklist
 
-Before promoting changes between environments, the following checks are performed.
+Before promoting changes between environments, the following validation activities are performed.
 
-## Data
+### Data Engineering
 
 - Successful data ingestion
 - Record count validation
 - Data quality verification
 
----
-
-## Warehouse
+### Data Warehouse
 
 - Dimension tables populated
 - Fact tables populated
-- Reporting views validated
+- SQL views validated
 - Stored procedures executed successfully
 
----
+### Artificial Intelligence
 
-## AI Enrichment
+- GPT-5 enrichment completed successfully
+- Structured output validated
+- Enriched datasets verified
 
-- Successful GPT enrichment
-- Structured output validation
-- Enriched dataset verification
+### Business Intelligence
 
----
-
-## Reporting
-
-- Semantic model refresh
-- DAX measure validation
-- Dashboard rendering
-- KPI verification
+- Semantic model refreshed
+- DAX measures validated
+- Dashboards rendered successfully
+- KPIs verified
 
 ---
 
-# Source Control
+# 📂 Source Control
 
-Project source code is maintained in GitHub and Azure DevOps repositories.
+GitHub and Azure DevOps provide centralized version control for the project.
 
-The repository includes:
+Repository assets include:
 
 - SQL scripts
-- Notebook source code
+- PySpark notebooks
+- Pipeline definitions
 - Configuration files
-- Architecture documentation
-- Power BI documentation
+- Documentation
 - Sample datasets
 
-Version control provides:
+Version control supports:
 
 - Change history
-- Backup
 - Collaboration
 - Documentation
-- Project organization
+- Backup
+- Traceability
 
 ---
 
-# Repository Organization
-
-The project follows a modular repository structure.
+# 📁 Repository Structure
 
 ```text
 fabric-ai-customer-intelligence/
@@ -195,52 +168,53 @@ fabric-ai-customer-intelligence/
 ├── sample-data/
 ├── screenshots/
 ├── sql/
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
-Each component is organized according to its role within the Microsoft Fabric solution.
+The repository is organized to separate architecture, engineering, analytics and documentation into reusable modules.
 
 ---
 
-# Benefits
+# 🎯 Current Capability
 
-The deployment approach provides several advantages.
+The current implementation demonstrates:
 
-- Controlled environment promotion
-- Consistent analytical assets
-- Environment isolation
-- Simplified validation
-- Improved governance
-- Centralized source control
-- Reproducible project structure
+- Microsoft Fabric Deployment Pipelines
+- Environment separation
+- Controlled deployment workflow
+- GitHub & Azure DevOps version control
+- Modular repository organization
 
 ---
 
-# Future Enhancements
+# 🚀 Future Roadmap
 
-The solution can be further enhanced by introducing:
+The architecture is designed to support future DevOps enhancements including:
 
 - Microsoft Fabric Git Integration
 - Automated CI/CD pipelines
+- GitHub Actions or Azure DevOps Pipelines
 - Branch protection policies
 - Automated testing
 - Deployment approvals
 - Environment parameterization
 
-These enhancements would support fully automated enterprise deployment workflows.
+These capabilities can be introduced without changing the overall solution architecture.
 
 ---
 
-# Design Summary
+# 📌 Design Summary
 
-The Fabric AI Customer Intelligence Platform demonstrates a structured deployment strategy using Microsoft Fabric Deployment Pipelines together with centralized source control in GitHub and Azure DevOps.
+The **Fabric AI Customer Intelligence Platform** demonstrates a structured deployment strategy using **Microsoft Fabric Deployment Pipelines** together with centralized source control in **GitHub** and **Azure DevOps**.
 
-While the current implementation focuses on controlled promotion of analytical assets across Development, Test and Production workspaces, the architecture has been designed to support future CI/CD automation as the platform evolves.
+By separating Development, Test and Production environments, the solution promotes reliable releases while providing a clear path toward fully automated CI/CD as the platform evolves.
 
 ---
 
-# Related Documentation
+# 📚 Related Documentation
 
-- architecture.md
-- semantic-model.md
-- ai-enrichment.md
+- 📖 [Solution Architecture](architecture.md)
+- 🌌 [Semantic Model](semantic-model.md)
+- 🤖 [AI Enrichment](ai-enrichment.md)
+- ⚙️ [CI/CD & DevOps](cicd.md)
