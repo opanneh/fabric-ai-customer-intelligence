@@ -79,6 +79,127 @@ The Medallion Architecture establishes a clear separation between ingestion, eng
 
 ---
 
+# 🔄 Data Engineering Pipelines
+
+Microsoft Fabric **Data Factory** orchestrates the movement of data across the Medallion Architecture, automating ingestion, transformation and loading throughout the platform.
+
+Three dedicated pipelines were implemented to ingest structured and semi-structured customer data, prepare trusted enterprise datasets and publish curated analytical data into the Fabric Warehouse.
+
+Together, these pipelines establish a repeatable and governed data engineering workflow that supports enterprise reporting and AI-powered customer intelligence.
+
+---
+
+## Pipeline 1 — Customer & Product Data Ingestion
+
+<p align="center">
+  <img src="../screenshots/pl_01_ingest_csv.png" width="100%">
+</p>
+
+<p align="center">
+<i>Pipeline for ingesting structured customer, product and sales datasets into the Bronze Lakehouse.</i>
+</p>
+
+This pipeline ingests structured operational datasets into the **Bronze Lakehouse**, preserving raw source data while capturing metadata for downstream processing.
+
+**Key activities include:**
+
+- Customer data ingestion
+- Product data ingestion
+- Sales data ingestion
+- Schema validation
+- Bronze Lakehouse loading
+- Pipeline monitoring
+
+---
+
+## Pipeline 2 — Customer Reviews Ingestion
+
+<p align="center">
+  <img src="../screenshots/pl_02_ingest_json.png" width="100%">
+</p>
+
+<p align="center">
+<i>Pipeline for ingesting semi-structured customer review data into the Bronze Lakehouse.</i>
+</p>
+
+Customer reviews are ingested independently to support downstream cleansing, feature engineering and AI enrichment within the Silver layer.
+
+**Key activities include:**
+
+- JSON review ingestion
+- Bronze Lakehouse loading
+- Metadata validation
+- Data quality verification
+- Pipeline orchestration
+
+---
+
+## Pipeline 3 — Gold Warehouse Loading
+
+<p align="center">
+  <img src="../screenshots/pl_03_ingest_to_gold.png" width="100%">
+</p>
+
+<p align="center">
+<i>Pipeline for promoting trusted Silver datasets into the Fabric Warehouse.</i>
+</p>
+
+After PySpark transformation and GPT-5 enrichment, curated datasets are loaded into the **Fabric Warehouse**, where analytical fact and dimension tables are populated for enterprise reporting.
+
+**Key activities include:**
+
+- Load dimension tables
+- Load fact tables
+- Warehouse synchronization
+- Data validation
+- Gold layer publishing
+
+---
+
+## End-to-End Data Flow
+
+The three Data Factory pipelines work together with PySpark notebooks and Azure AI Foundry to automate the complete Microsoft Fabric data engineering lifecycle.
+
+```text
+Operational Data
+        │
+        ▼
+Pipeline 1
+(Customer, Product & Sales)
+        │
+        ▼
+Bronze Lakehouse
+        │
+        ▼
+PySpark Transformation
+        │
+        ▼
+Silver Lakehouse
+        │
+        ▼
+Azure AI Foundry (GPT-5)
+        │
+        ▼
+AI-Enriched Silver Layer
+        │
+        ▼
+Pipeline 3
+(Warehouse Loading)
+        │
+        ▼
+Fabric Warehouse
+        │
+        ▼
+Power BI Semantic Model
+        │
+        ▼
+Enterprise Dashboards
+```
+
+This orchestration demonstrates how Microsoft Fabric Data Factory coordinates ingestion, transformation, AI enrichment and warehouse loading to deliver trusted analytical datasets for business intelligence.
+
+---
+
 # 🥉 Bronze Layer
 
 The Bronze layer stores the first managed copy of source data while preserving historical records and supporting data lineage.
