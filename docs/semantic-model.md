@@ -28,7 +28,7 @@ The semantic model was designed with the following objectives:
 # Galaxy Schema
 
 <p align="center">
-  <img src="architecture/galaxy_schema.png" width="95%">
+  <img src="screenshots/semantic-model.png" width="95%">
 </p>
 
 The semantic model consists of three shared dimensions supporting three analytical fact tables.
