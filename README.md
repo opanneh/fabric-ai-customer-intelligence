@@ -4,7 +4,7 @@
 
 The **Fabric AI Customer Intelligence Platform** demonstrates how modern organizations can build a scalable customer analytics platform using **Microsoft Fabric**, integrating **Data Engineering**, **Artificial Intelligence**, **Data Warehousing**, **Business Intelligence**, and **DevOps** into a unified enterprise solution.
 
-The solution follows Microsoft's recommended **Medallion Architecture**, leveraging **Fabric Data Factory**, **OneLake**, **PySpark**, **Azure AI Foundry (GPT-5)**, **Fabric Warehouse**, **Power BI Semantic Models**, and **Deployment Pipelines** to transform raw operational data into trusted business insights.
+The solution follows Microsoft's recommended **Medallion Architecture**, leveraging **Fabric Data Factory**, **OneLake**, **Lakehouse**, **PySpark**, **Azure AI Foundry (GPT-5)**, **Fabric Warehouse**, **Power BI Semantic Models**, and **Deployment Pipelines** to transform raw operational data into trusted business insights.
 
 ---
 
@@ -13,14 +13,15 @@ The solution follows Microsoft's recommended **Medallion Architecture**, leverag
 - Enterprise Medallion Architecture (Bronze → Silver → Gold)
 - Microsoft Fabric Data Factory orchestration
 - OneLake centralized data platform
-- PySpark data engineering & feature engineering
-- AI-powered customer review enrichment using GPT-5
-- Enterprise Galaxy Schema data warehouse
+- Lakehouse-based data engineering
+- PySpark feature engineering
+- AI-powered customer intelligence using Azure AI Foundry (GPT-5)
+- Enterprise dimensional warehouse using a Galaxy Schema
 - Power BI Semantic Model
 - Executive and operational dashboards
 - Multi-environment deployment (Development → Test → Production)
 - Azure DevOps & GitHub integration
-- Modular and production-ready repository structure
+- Modular, scalable and production-ready repository structure
 
 ---
 
@@ -41,15 +42,39 @@ The solution demonstrates enterprise architecture principles including:
 
 ---
 
-# 🏗 Solution Architecture
+# 🏗️ End-to-End Solution Architecture
+
+The platform orchestrates data ingestion, transformation, AI enrichment,
+analytical modelling and reporting through Microsoft Fabric.
 
 <p align="center">
   <img src="architecture/end-to-end-architecture.png" width="100%">
 </p>
 
-For a detailed explanation of the solution architecture, see:
+📖 **Detailed Architecture:** [docs/architecture.md](docs/architecture.md)
 
-📖 **docs/architecture.md**
+---
+
+# 🥉 Medallion Architecture
+
+The solution follows Microsoft's Medallion Architecture to progressively
+improve data quality through Bronze, Silver and Gold layers. Customer reviews
+are enriched using Azure AI Foundry (GPT-5) before being promoted to the Gold
+analytical layer.
+
+<p align="center">
+  <img src="architecture/medallian_architecture.png" width="100%">
+</p>
+
+---
+
+# 🌌 Enterprise Semantic Model
+
+The Gold analytical layer is implemented using a **Galaxy Schema (Fact Constellation)** with shared dimensions, multiple fact tables and a governed Power BI Semantic Model.
+
+<p align="center">
+  <img src="architecture/galaxy_schema.png" width="95%">
+</p>
 
 ---
 
@@ -67,7 +92,7 @@ For a detailed explanation of the solution architecture, see:
 | Data Warehouse | Galaxy Schema |
 | Semantic Layer | Power BI Semantic Model |
 | Reporting | Power BI |
-| DevOps | GitHub & Azure DevOps |
+| Version Control | GitHub & Azure DevOps |
 | Deployment | Microsoft Fabric Deployment Pipelines |
 
 ---
@@ -76,8 +101,8 @@ For a detailed explanation of the solution architecture, see:
 
 - End-to-end Medallion Architecture
 - Enterprise ETL orchestration
-- AI-powered customer review enrichment
-- Feature engineering with PySpark
+- AI-powered customer intelligence
+- PySpark feature engineering
 - Enterprise dimensional modelling
 - Galaxy Schema semantic model
 - Interactive Power BI dashboards
@@ -88,21 +113,39 @@ For a detailed explanation of the solution architecture, see:
 
 # 📊 Dashboard Gallery
 
-### 📈 Executive Overview
+## 📈 Executive Overview
 
-> *(Insert Screenshot)*
-
----
-
-### 👥 Customer Feedback
-
-> *(Insert Screenshot)*
+<p align="center">
+  <img src="screenshots/executive-overview.png" width="100%">
+</p>
 
 ---
 
-### 🤖 AI Customer Insights
+## 👥 Customer Feedback
 
-> *(Insert Screenshot)*
+<p align="center">
+  <img src="screenshots/customer-feedback.png" width="100%">
+</p>
+
+---
+
+## 🤖 AI Customer Insights
+
+<p align="center">
+  <img src="screenshots/ai-customer-insights.png" width="100%">
+</p>
+
+---
+
+# 🎯 Business Outcomes
+
+This solution demonstrates how Microsoft Fabric can be used to build an enterprise-grade analytics platform that:
+
+- Consolidates multi-source customer data
+- Improves data quality through Medallion Architecture
+- Enhances customer insights using Generative AI
+- Delivers governed analytics through a semantic model
+- Supports executive decision-making through interactive dashboards
 
 ---
 
@@ -111,43 +154,44 @@ For a detailed explanation of the solution architecture, see:
 ```text
 fabric-ai-customer-intelligence/
 │
-├── architecture/
-├── config/
-├── docs/
-├── notebooks/
-├── pipelines/
-├── powerbi/
-├── sample-data/
-├── screenshots/
-├── sql/
-└── README.md
+├── architecture/         # Architecture diagrams
+├── config/               # Configuration files
+├── docs/                 # Technical documentation
+├── notebooks/            # PySpark notebooks
+├── pipelines/            # Fabric Data Factory pipelines
+├── powerbi/              # Semantic model & reports
+├── sample-data/          # CSV & JSON sample datasets
+├── screenshots/          # Dashboard screenshots
+├── sql/                  # Warehouse DDL, Views & Stored Procedures
+├── README.md
+└── LICENSE
 ```
 
 ---
 
 # 📚 Documentation
 
-Detailed technical documentation is available in the **docs** folder.
+Comprehensive technical documentation is available in the **docs** folder.
 
 | Document | Description |
 |-----------|-------------|
-| architecture.md | End-to-End Solution Architecture |
-| semantic-model.md | Galaxy Schema & Semantic Model |
-| ai-enrichment.md | GPT-5 Enrichment Workflow |
-| deployment.md | Deployment Strategy |
-| cicd.md | CI/CD & DevOps Approach |
+| [architecture.md](docs/architecture.md) | End-to-End Solution Architecture |
+| [semantic-model.md](docs/semantic-model.md) | Galaxy Schema & Semantic Model |
+| [ai-enrichment.md](docs/ai-enrichment.md) | Azure AI Foundry (GPT-5) Enrichment Workflow |
+| [deployment.md](docs/deployment.md) | Deployment Strategy |
+| [cicd.md](docs/cicd.md) | DevOps & CI/CD Approach |
 
 ---
 
 # 🚀 Future Enhancements
 
 - Incremental data ingestion
+- Enterprise Git integration
+- Automated CI/CD pipelines
 - Event streaming
 - Customer churn prediction
 - Product recommendation engine
 - RAG-powered customer support assistant
-- Enterprise Git Integration
-- Automated CI/CD pipelines
 
 ---
 
@@ -156,6 +200,7 @@ Detailed technical documentation is available in the **docs** folder.
 - Microsoft Fabric
 - Fabric Data Factory
 - OneLake
+- Lakehouse
 - Medallion Architecture
 - PySpark
 - Delta Lake
@@ -177,4 +222,8 @@ Detailed technical documentation is available in the **docs** folder.
 
 **Ousainou Panneh**
 
-**Data Engineer | BI Developer | Microsoft Fabric | AI & Data Science**
+**Data Engineer | Business Intelligence Developer | Microsoft Fabric | AI & Data Science**
+
+---
+
+⭐ *If you found this project interesting, feel free to star the repository or connect with me on LinkedIn.*
