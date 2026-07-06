@@ -2,105 +2,64 @@
 
 ## Overview
 
-The **Fabric AI Customer Intelligence Platform** is designed as an enterprise-grade analytics solution that transforms raw operational data into trusted, AI-enriched business insights.
+The **Fabric AI Customer Intelligence Platform** is an enterprise-grade analytics solution that transforms raw operational data into trusted, AI-enriched business intelligence.
 
-The platform follows Microsoft's recommended **Medallion Architecture**, separating data ingestion, transformation, enrichment, and analytical consumption into distinct layers. This layered approach improves maintainability, scalability, governance, and analytical performance while supporting both traditional business intelligence and AI-powered customer analytics.
+The platform follows Microsoft's recommended **Medallion Architecture**, separating data ingestion, transformation, enrichment and analytical consumption into clearly defined layers. This architecture improves scalability, maintainability, governance and analytical performance while supporting both traditional Business Intelligence and AI-powered customer analytics.
 
-The solution integrates Microsoft Fabric's unified analytics capabilities, including **Data Factory**, **OneLake**, **Lakehouse**, **PySpark**, **Fabric Warehouse**, **Power BI**, and **Deployment Pipelines** into a single enterprise platform.
+By combining **Microsoft Fabric Data Factory**, **OneLake**, **Lakehouse**, **PySpark**, **Azure AI Foundry (GPT-5)**, **Fabric Warehouse**, **Power BI Semantic Models** and **Deployment Pipelines**, the solution provides a unified enterprise analytics platform.
 
 ---
 
-# Architecture Principles
+# 🎯 Architecture Principles
 
-The solution was designed around the following enterprise architecture principles:
+The solution is built around the following enterprise design principles:
 
-- Separation of storage, processing and reporting workloads
 - Layered Medallion Architecture
+- Separation of ingestion, processing and reporting workloads
 - Modular and reusable data pipelines
 - Centralized enterprise storage using OneLake
 - AI enrichment integrated into the trusted data layer
-- Dimensional modelling for analytical performance
+- Enterprise dimensional modelling
 - Governed semantic modelling
 - Multi-environment deployment
 - Source-controlled development
 
-These principles enable the platform to scale while remaining maintainable and easy to extend.
+These principles enable the platform to scale while remaining maintainable and extensible.
 
 ---
 
-# End-to-End Architecture
+# 🏛️ End-to-End Architecture
 
-The solution follows a sequential processing pipeline:
+<p align="center">
+  <img src="../architecture/end-to-end-architecture.png" width="100%">
+</p>
 
-```
-Source Data
-      │
-      ▼
-Data Factory
-      │
-      ▼
-Bronze Lakehouse
-      │
-      ▼
-PySpark Transformation
-      │
-      ▼
-Silver Lakehouse
-      │
-      ▼
-AI Enrichment
-      │
-      ▼
-Silver (Enriched)
-      │
-      ▼
-Data Factory Pipeline
-      │
-      ▼
-Gold Warehouse
-      │
-      ▼
-Semantic Model
-      │
-      ▼
-Power BI
-```
+<p align="center">
+<i>End-to-end Microsoft Fabric architecture for AI-powered customer analytics.</i>
+</p>
 
-Each stage has a clearly defined responsibility and ownership.
+The platform processes customer data through a governed analytics pipeline, progressively transforming operational data into trusted business intelligence.
 
 ---
 
-# Architecture Components
+# 🧩 Solution Components
 
-## Data Sources
-
-The platform ingests structured and semi-structured customer data from multiple operational systems.
-
-Supported data includes:
-
-- Customer Master
-- Product Master
-- Sales Orders
-- Customer Reviews
-- Website Activity
-- Social Media
-
-Microsoft Fabric Data Factory orchestrates the ingestion process into OneLake.
+| Layer | Responsibility | Technology |
+|--------|----------------|------------|
+| **Data Sources** | Operational customer data | CSV, JSON |
+| **Data Integration** | Data ingestion & orchestration | Fabric Data Factory |
+| **Bronze** | Raw managed data | OneLake Lakehouse |
+| **Silver** | Cleansed and validated data | PySpark |
+| **AI Enrichment** | GPT-5 customer intelligence | Azure AI Foundry |
+| **Gold** | Curated analytical warehouse | Fabric Warehouse |
+| **Semantic Layer** | Business relationships & DAX | Power BI Semantic Model |
+| **Reporting** | Executive dashboards | Power BI |
 
 ---
 
-## Bronze Layer
+# 🥉 Bronze Layer
 
-The Bronze layer stores the first managed copy of the incoming data.
-
-Objectives:
-
-- Preserve raw source data
-- Maintain historical records
-- Enable data lineage
-- Support auditing and replay
-
-No business logic is applied at this stage.
+The Bronze layer stores the first managed copy of source data while preserving historical records and supporting data lineage.
 
 Typical operations include:
 
@@ -109,41 +68,34 @@ Typical operations include:
 - Delta conversion
 - Ingestion logging
 
+No business transformations are applied at this stage.
+
 ---
 
-## Silver Layer
+# 🥈 Silver Layer
 
-The Silver layer represents the trusted enterprise dataset.
+The Silver layer prepares trusted enterprise datasets for analytical processing.
 
-This layer is responsible for improving data quality and preparing data for downstream analytical workloads.
-
-Transformation activities include:
+Key transformation activities include:
 
 - Data cleansing
-- Standardisation
+- Standardization
 - Duplicate removal
 - Null handling
 - Business rule validation
 - Feature engineering
 
-At this stage, data is considered suitable for enterprise processing.
+This layer produces high-quality datasets suitable for AI enrichment and analytical modelling.
 
 ---
 
-# AI Enrichment
+# 🤖 AI Enrichment
 
-A distinguishing feature of the platform is the integration of AI directly into the engineering pipeline.
+A key differentiator of the platform is the integration of **Azure AI Foundry (GPT-5)** directly into the engineering pipeline.
 
-Rather than enriching reports after the warehouse has been built, customer reviews are analysed immediately after the Silver transformation stage.
+Customer reviews are enriched immediately after Silver-layer processing, ensuring AI-generated attributes become reusable enterprise assets rather than report-specific calculations.
 
-This design provides several advantages:
-
-- AI attributes become part of the trusted enterprise dataset.
-- Multiple downstream consumers can reuse AI-generated insights.
-- AI processing occurs once rather than being repeated in every report.
-- Analytical consistency is maintained across all reporting solutions.
-
-The enrichment process uses Azure AI Foundry with GPT-5 to generate business attributes including:
+Generated attributes include:
 
 - Sentiment
 - Category
@@ -152,15 +104,13 @@ The enrichment process uses Azure AI Foundry with GPT-5 to generate business att
 - Keywords
 - Recommended Action
 
-The enriched attributes are written back into the Silver Lakehouse before loading into the analytical warehouse.
+The enriched datasets are written back into the Silver Lakehouse before being promoted to the Gold analytical layer.
 
 ---
 
-# Gold Layer
+# 🥇 Gold Layer
 
-The Gold layer contains curated business-ready datasets.
-
-Unlike Bronze and Silver, the Gold layer is implemented as a **Fabric Warehouse** optimized for analytical queries.
+The Gold layer is implemented using a **Fabric Warehouse** optimized for enterprise analytics.
 
 The warehouse contains:
 
@@ -169,76 +119,66 @@ The warehouse contains:
 - Reporting views
 - Stored procedures
 
-The warehouse follows a Galaxy (Fact Constellation) schema to support multiple analytical subject areas.
+A **Galaxy (Fact Constellation) Schema** supports multiple analytical subject areas while sharing common business dimensions.
 
 ---
 
-# Semantic Model
+# 🌌 Semantic Model
 
-The Power BI Semantic Model sits directly above the Gold Warehouse.
+The Power BI Semantic Model provides a governed analytical layer above the Fabric Warehouse.
 
 Responsibilities include:
 
 - Business relationships
-- Time intelligence
 - DAX calculations
 - KPI definitions
+- Time intelligence
 - Interactive filtering
 
-Separating the semantic layer from the warehouse enables reusable business definitions while simplifying report development.
+Centralizing business logic within the semantic model ensures analytical consistency across all Power BI reports.
 
 ---
 
-# Reporting Layer
+# 📊 Business Intelligence
 
-The platform delivers business insights through interactive Power BI dashboards.
+The semantic model powers three analytical reporting domains.
 
-Three reporting domains were developed:
+| Dashboard | Business Focus |
+|-----------|----------------|
+| 📈 Executive Overview | Revenue, Orders, KPIs and Sales Trends |
+| 👥 Customer Feedback | Ratings, Reviews and Customer Engagement |
+| 🤖 AI Customer Insights | Sentiment Analysis, Categories, Priorities and Recommendations |
 
-### Executive Overview
-
-Enterprise sales and operational KPIs.
-
-### Customer Feedback
-
-Customer review analytics and engagement metrics.
-
-### AI Customer Insights
-
-AI-generated sentiment, categorisation, priorities and recommended actions.
-
-Each dashboard consumes the same governed semantic model.
+All dashboards consume the same governed semantic model, ensuring consistent KPI definitions and business logic.
 
 ---
 
-# Deployment Architecture
+# 🚀 Deployment Strategy
 
-The platform supports controlled promotion of Fabric artifacts through Deployment Pipelines.
-
-Environments include:
+The platform supports controlled promotion of Microsoft Fabric artifacts through Deployment Pipelines across:
 
 - Development
 - Test
 - Production
 
-This deployment strategy reduces operational risk while supporting collaborative development.
+This deployment strategy enables structured validation while reducing operational risk.
 
 ---
 
-# Security & Governance
+# 🔐 Security & Governance
 
-Although this project uses sample data, the architecture was designed to align with enterprise governance practices.
+Although the project uses sample data, the architecture follows enterprise governance principles.
 
-Design considerations include:
+Key design considerations include:
 
 - Centralized storage
 - Controlled data movement
-- Layered data architecture
-- Reusable semantic model
+- Layered architecture
+- Governed semantic model
 - Environment isolation
 - Source-controlled development
 
-The architecture can be extended to support:
+The architecture can be extended with:
 
 - Row-Level Security (RLS)
 - Sensitivity Labels
@@ -248,26 +188,30 @@ The architecture can be extended to support:
 
 ---
 
-# Why This Architecture?
+# 🎯 Business Value
 
-The architecture was intentionally designed to separate operational processing from analytical consumption.
+This architecture enables organizations to:
 
-This provides several benefits:
-
-- Improved scalability
-- Better maintainability
-- Easier troubleshooting
-- Reusable AI enrichment
-- Enterprise reporting consistency
-- Simplified future enhancements
-
-The result is a modern Microsoft Fabric solution that combines Data Engineering, Artificial Intelligence, Data Warehousing and Business Intelligence into a single governed analytics platform.
+- Build a trusted Customer 360 platform
+- Improve data quality through Medallion Architecture
+- Integrate AI directly into enterprise data engineering
+- Deliver governed enterprise reporting
+- Reuse centralized business logic across multiple analytical solutions
+- Scale analytics while maintaining consistency and governance
 
 ---
 
-# Related Documentation
+# 📌 Design Summary
 
-- semantic-model.md
-- ai-enrichment.md
-- deployment.md
-- cicd.md
+The **Fabric AI Customer Intelligence Platform** combines Microsoft Fabric, Azure AI Foundry and Power BI into a unified enterprise analytics solution.
+
+By integrating Data Engineering, Artificial Intelligence, Data Warehousing and Business Intelligence within a governed Medallion Architecture, the platform demonstrates how modern organizations can transform operational data into trusted, AI-powered business insights.
+
+---
+
+# 📚 Related Documentation
+
+- 📖 [Semantic Model](semantic-model.md)
+- 🤖 [AI Enrichment](ai-enrichment.md)
+- 🚀 [Deployment Strategy](deployment.md)
+- ⚙️ [CI/CD & DevOps](cicd.md)
