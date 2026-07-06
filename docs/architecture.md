@@ -38,7 +38,29 @@ These principles enable the platform to scale while remaining maintainable and e
 <i>End-to-end Microsoft Fabric architecture for AI-powered customer analytics.</i>
 </p>
 
-The platform processes customer data through a governed analytics pipeline, progressively transforming operational data into trusted business intelligence.
+The platform orchestrates data ingestion, transformation, AI enrichment, analytical modelling and reporting through Microsoft Fabric. Operational data is progressively transformed into trusted enterprise datasets that power executive reporting and AI-driven customer intelligence.
+
+---
+
+# 🥉 Medallion Architecture
+
+The solution implements Microsoft's **Medallion Architecture**, progressively improving data quality as information moves through the Bronze, Silver and Gold layers.
+
+<p align="center">
+  <img src="../screenshots/medallian-architecture.png" width="100%">
+</p>
+
+<p align="center">
+<i>Microsoft Fabric Medallion Architecture implemented within the Customer Intelligence Platform.</i>
+</p>
+
+| Layer | Purpose | Primary Technologies |
+|--------|---------|----------------------|
+| **Bronze** | Preserve raw operational data and maintain lineage | OneLake, Lakehouse |
+| **Silver** | Cleanse, validate, standardize and enrich enterprise data | PySpark, Azure AI Foundry |
+| **Gold** | Deliver curated business-ready datasets | Fabric Warehouse, Power BI Semantic Model |
+
+The Medallion Architecture establishes a clear separation between ingestion, engineering and analytical consumption, improving governance, scalability and maintainability.
 
 ---
 
@@ -76,7 +98,7 @@ No business transformations are applied at this stage.
 
 The Silver layer prepares trusted enterprise datasets for analytical processing.
 
-Key transformation activities include:
+Transformation activities include:
 
 - Data cleansing
 - Standardization
@@ -95,7 +117,7 @@ A key differentiator of the platform is the integration of **Azure AI Foundry (G
 
 Customer reviews are enriched immediately after Silver-layer processing, ensuring AI-generated attributes become reusable enterprise assets rather than report-specific calculations.
 
-Generated attributes include:
+Generated business attributes include:
 
 - Sentiment
 - Category
@@ -104,7 +126,7 @@ Generated attributes include:
 - Keywords
 - Recommended Action
 
-The enriched datasets are written back into the Silver Lakehouse before being promoted to the Gold analytical layer.
+The enriched datasets are written back into the Silver Lakehouse before being promoted to the Gold analytical layer, allowing multiple downstream consumers to reuse the same governed AI insights.
 
 ---
 
@@ -141,7 +163,7 @@ Centralizing business logic within the semantic model ensures analytical consist
 
 # 📊 Business Intelligence
 
-The semantic model powers three analytical reporting domains.
+The semantic model powers multiple analytical dashboards.
 
 | Dashboard | Business Focus |
 |-----------|----------------|
@@ -150,6 +172,28 @@ The semantic model powers three analytical reporting domains.
 | 🤖 AI Customer Insights | Sentiment Analysis, Categories, Priorities and Recommendations |
 
 All dashboards consume the same governed semantic model, ensuring consistent KPI definitions and business logic.
+
+## Executive Overview
+
+<p align="center">
+  <img src="../screenshots/executive-overview.png" width="100%">
+</p>
+
+---
+
+## Customer Feedback
+
+<p align="center">
+  <img src="../screenshots/customer-feedback.png" width="100%">
+</p>
+
+---
+
+## AI Customer Insights
+
+<p align="center">
+  <img src="../screenshots/ai-customer-insights.png" width="100%">
+</p>
 
 ---
 
@@ -190,7 +234,7 @@ The architecture can be extended with:
 
 # 🎯 Business Value
 
-This architecture enables organizations to:
+The architecture enables organizations to:
 
 - Build a trusted Customer 360 platform
 - Improve data quality through Medallion Architecture
