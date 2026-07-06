@@ -46,7 +46,7 @@ The solution demonstrates enterprise architecture principles including:
 > *(Insert your End-to-End Architecture image here)*
 
 ```markdown
-![End-to-End Architecture]images/end-to-end-architecture.png)
+![End-to-End Architecture]architecture/end-to-end-architecture.png)
 ```
 
 For a detailed explanation of the solution architecture, see:
